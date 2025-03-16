@@ -59,7 +59,7 @@
 </head>
 <body>
   <main class="form-signin">
-    <form action="login_pro.php" method="post">
+    <form action="login.php" method="post">
       <img src="img/logo1.gif" alt="Logo" width="100" height="150">
       <h1 class="h3 mb-3 fw-normal">เข้าสู่ระบบ</h1>
 
@@ -76,10 +76,11 @@
     </form>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y1J3zn4=" crossorigin="anonymous"></script>
+          integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y1J3zn4=" crossorigin="anonymous">
+  </script>
   <script>
     document.getElementById('cancelButton').addEventListener('click', function() {
-      window.location.href = 'p1.php'; 
+      window.location.href = 'blackendhome.php'; 
     });
   </script>
 </body>
