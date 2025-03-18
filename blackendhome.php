@@ -87,9 +87,9 @@ if (!isset($_SESSION['username'])) {
 </head>
 <body>
     <!-- Header -->
-    <header class="d-flex justify-content-between px-4" style="position: fixed; top: 0; left: 0; width: 100%; background: white; z-index: 1000; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); padding: 15px;">
+    <header class="d-flex align-items-center px-4">
         <span>ยินดีต้อนรับ, <?php echo htmlspecialchars($_SESSION['username']); ?>!</span>
-        <a href="logout.php" class="btn btn-outline-primary">ออกจากระบบ</a>
+        <a href="logout.php" class="btn btn-outline-primary ms-auto">ออกจากระบบ</a>
     </header>
     <!-- Header -->
      
@@ -132,7 +132,7 @@ if (!isset($_SESSION['username'])) {
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
                     <img src="https://github.com/mdo.png" alt="Profile" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
+                    <strong> <?php echo htmlspecialchars($_SESSION['username']); ?></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
