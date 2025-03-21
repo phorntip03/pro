@@ -18,17 +18,19 @@ if (!isset($_SESSION['username'])) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
+            color: #333;
         }
         header {
              position: fixed;
              top: 0;
              left: 0;
              width: 100%;
-             background: white;
+             background-color:rgb(44, 62, 80);
              z-index: 1000;
              padding: 15px 20px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+             color: white;
+             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         .wrapper {
             display: grid;
@@ -37,53 +39,86 @@ if (!isset($_SESSION['username'])) {
         }
         .sidebar {
             width: 280px;
-            background-color: #ffffff;
+            background-color:rgb(44, 62, 80);
             padding: 15px;
+            color: white;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
         .sidebar .nav-link {
-            color: rgb(0, 0, 0);
+            color: white;
             font-size: 1.1rem;
-            padding-left: 30px;
+            padding-left: 20px;
         }
         .sidebar .nav-link.active {
-            background-color: rgb(245, 68, 92);
+            background-color: #E74C3C;
             color: white;
+            border-radius: 5px;
         }
         .menu-section {
-            background: #ddd;
+            background-color: #27AE60;
             padding: 10px;
             font-weight: bold;
             border-radius: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            color: white;
         }
         .menu-list {
             list-style: none;
             padding: 0;
         }
-        .menu-list li {
-            padding: 5px 0;
-        }
         .menu-list a {
             display: block;
             text-decoration: none;
-            background: #fff;
+            background-color: #3498DB;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid gray;
-            color: black;
+            margin-bottom: 5px;
             text-align: center;
+            color: white;
+            transition: 0.3s;
         }
         .menu-list a:hover {
-            background: #ddd;
+            background: #1ABC9C;
+            transform: scale(1.05);
         }
+        .content-container {
+            padding: 80px 20px;
+        }
+        .carousel-inner img {
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .bottom-section .left-box, .bottom-section .right-box {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .custom-logout-btn {
+            background-color: #ff5733; /* สีปุ่ม */
+            color: white; /* สีตัวอักษร */
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .custom-logout-btn:hover {
+            background-color: #e74c3c; /* สีตอนเอาเมาส์ไปชี้ */
+        }
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="d-flex align-items-center px-4">
         <span>ยินดีต้อนรับ, <?php echo htmlspecialchars($_SESSION['username']); ?>!</span>
-        <a href="logout.php" class="btn btn-outline-primary ms-auto">ออกจากระบบ</a>
+        <a href="logout.php" class="btn btn-success ms-auto">ออกจากระบบ</a>
     </header>
     <!-- Header -->
      
@@ -127,7 +162,7 @@ if (!isset($_SESSION['username'])) {
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="https://github.com/mdo.png" alt="Profile" width="32" height="32" class="rounded-circle me-2">
+                    <img src="img/i2.jpg" alt="Profile" width="32" height="32" class="rounded-circle me-2">
                     <strong> <?php echo htmlspecialchars($_SESSION['username']); ?></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
@@ -141,15 +176,64 @@ if (!isset($_SESSION['username'])) {
         </div>
         <!-- Sidebar -->
 
-        <!-- Main Content -->
-        <main class="content-container">
-            <div class="top-section">ส่วนที่ 1</div>
-            <div class="bottom-section">
-                <div class="left-box">ส่วนที่ 2</div>
-                <div class="right-box">ส่วนที่ 3</div>
+     <!-- Main Content -->
+     <main class="content-container">
+            <div class="text-center">
+                <h2>ยินดีต้อนรับสู่ระบบจัดการฐานข้อมูลหลักสูตร</h2>
+                <p>จัดการข้อมูลของคุณและข้อมูลหลักสูตรได้เลยค่ะ</p>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/i1.jpg" class="d-block w-100" alt="สไลด์ที่ 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/i2.jpg" class="d-block w-100" alt="สไลด์ที่ 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/i3.jpg" class="d-block w-100" alt="สไลด์ที่ 3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="bottom-section mt-4">
+                <div class="left-box">
+                    <h4>ข่าวสาร</h4>
+                    <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/i1.jpg" class="d-block w-100" alt="สไลด์ที่ 1">
+        </div>
+        <div class="carousel-item">
+            <img src="img/i2.jpg" class="d-block w-100" alt="สไลด์ที่ 2">
+        </div>
+        <div class="carousel-item">
+            <img src="img/i3.jpg" class="d-block w-100" alt="สไลด์ที่ 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+</div>
+
+                <div class="right-box">
+                    <h4>รายงานสถิติ</h4>
+                    <img src="https://via.placeholder.com/300x200" alt="สถิติ" class="img-fluid rounded">
+                </div>
             </div>
         </main>
-        <!-- Main Content -->
+<!-- Main Content -->
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
