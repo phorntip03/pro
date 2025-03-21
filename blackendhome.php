@@ -25,12 +25,11 @@ if (!isset($_SESSION['username'])) {
              top: 0;
              left: 0;
              width: 100%;
-             background: white; /* ป้องกันโปร่งใส */
-             z-index: 1000; /* ทำให้ Header อยู่ด้านหน้า */
+             background: white;
+             z-index: 1000;
              padding: 15px 20px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
-
         .wrapper {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -51,37 +50,32 @@ if (!isset($_SESSION['username'])) {
             background-color: rgb(245, 68, 92);
             color: white;
         }
-        .btn-outline-primary {
-            border-color: rgb(253, 13, 13);
-            color: rgb(255, 0, 0);
-        }
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* จัดกึ่งกลาง */
-            justify-content: center; /* จัดให้อยู่ตรงกลาง */
-            padding: 20px;
-            height: 100%;
-        }
-        .top-section {
-            width: 80%;
-            background-color: #ddd;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2rem;
+        .menu-section {
+            background: #ddd;
+            padding: 10px;
             font-weight: bold;
-            margin-bottom: 20px;
+            border-radius: 5px;
+            margin-bottom: 5px;
         }
-        .bottom-section {
-            display: flex;
-            gap: 20px;
-            width: 80%;
+        .menu-list {
+            list-style: none;
+            padding: 0;
         }
-        .left-box, .right-box {
-            flex: 1;
-            background-color: #eee;
-            padding: 20px;
+        .menu-list li {
+            padding: 5px 0;
+        }
+        .menu-list a {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            color: black;
             text-align: center;
+        }
+        .menu-list a:hover {
+            background: #ddd;
         }
     </style>
 </head>
@@ -103,31 +97,33 @@ if (!isset($_SESSION['username'])) {
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="blackendhome.php" class="nav-link active">
                         <i class="bi bi-house-door me-2"></i> Home
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-box me-2"></i> Orders
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-box-seam me-2"></i> Products
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-people me-2"></i> Customers
-                    </a>
-                </li>
+            <hr>
+
+            <!-- เมนูใหม่ที่เพิ่ม -->
+            <div class="menu-section">แก้ไขข้อมูลส่วนตัว</div>
+            <ul class="menu-list">
+                <li><a href="edit-profile.php">แก้ไขประวัติ</a></li>
+                <li><a href="edit-branch.php">แก้ไขข้อมูลสาขา</a></li>
             </ul>
+
+            <div class="menu-section">เพิ่มคอร์ส</div>
+            <ul class="menu-list">
+                <li><a href="add-group.php">เพิ่มกลุ่มวิชา</a></li>
+                <li><a href="add-subject.php">เพิ่มรายวิชา</a></li>
+            </ul>
+
+            <ul class="menu-list">
+                <li><a href="check-registration.php">ตรวจสอบจำนวนผู้ลงทะเบียนเรียน</a></li>
+                <li><a href="view-courses.php">ดูคอร์สเรียน</a></li>
+                <li><a href="results.php">ผลการเรียน</a></li>
+                <li><a href="finance-report.php">รายงานการเงิน</a></li>
+                <li><a href="reset-password.php">ตั้งค่ารหัสผ่าน</a></li>
+            </ul>
+
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
