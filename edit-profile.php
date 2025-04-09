@@ -170,23 +170,30 @@ if (!isset($_SESSION['username'])) {
 
      <!-- Main Content -->
      <main class="content-container">
-     <h1 class="h1">ประวัติส่วนตัว</h1>
-     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="ชื่อ" required>
-        <label for="floatingUsername">ชื่อ</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="นามสกุล" required>
-        <label for="floatingPassword">นามสกุล</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="เบอร์โทร" required>
-        <label for="floatingPassword">เบอร์โทร</label>
-      </div>
-    </div>
-
+            <h1 class="h1">ประวัติส่วนตัว</h1>
+            <form action="update-profile.php" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingname_ps" name="name_ps"
+                           value="<?= isset($data['name_ps']) ? htmlspecialchars($data['name_ps']) : ''; ?>" required>
+                    <label for="floatingname_ps">ชื่อ</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatinglastname_ps" name="lastname_ps"
+                           value="<?= isset($data['lastname_ps']) ? htmlspecialchars($data['lastname_ps']) : ''; ?>" required>
+                    <label for="floatinglastname_ps">นามสกุล</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingemail" name="email"
+                           value="<?= isset($data['email']) ? htmlspecialchars($data['email']) : ''; ?>" required>
+                    <label for="floatingemail">อีเมล์</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary w-25 py-2 mx-2" type="submit">แก้ไข</button>
+                    <a href="profile.php" class="btn btn-secondary w-25 py-2 mx-2">ยกเลิก</a>
+                </div>
+            </form>
         </main>
-<!-- Main Content -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
