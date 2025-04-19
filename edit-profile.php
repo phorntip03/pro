@@ -1,11 +1,40 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['personnel_id'])) {
     header("Location: blackendlogin.php");
     exit();
 }
+
+$personnel_id = $_SESSION['personnel_id'];
+$conn = new mysqli("localhost", "root", "", "courseproject");
+$conn->set_charset("utf8");
+
+$sql = "SELECT p.name_ps, p.lastname_ps, p.email, b.namebranch 
+        FROM personnel p
+        JOIN branch b ON p.branch_id = b.branch_id
+        WHERE p.personnel_id = ?";
+$stmt = $conn->prepare($sql);
+
+// ตรวจสอบ prepare ว่าสำเร็จหรือไม่
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("i", $personnel_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$name = $lastname = $email = $branch = "";
+
+if ($row = $result->fetch_assoc()) {
+    $name = $row['name_ps'];
+    $lastname = $row['lastname_ps'];
+    $email = $row['email'];
+    $branch = $row['namebranch'];
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="th">
@@ -173,19 +202,24 @@ if (!isset($_SESSION['username'])) {
             <h1 class="h1">ประวัติส่วนตัว</h1>
             <form action="update-profile.php" method="post">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingname_ps" name="name_ps"
-                           value="<?= isset($data['name_ps']) ? htmlspecialchars($data['name_ps']) : ''; ?>" required>
+                <input type="text" class="form-control" id="floatingname_ps" name="name_ps"
+                value="<?= htmlspecialchars($name); ?>" required>
                     <label for="floatingname_ps">ชื่อ</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatinglastname_ps" name="lastname_ps"
-                           value="<?= isset($data['lastname_ps']) ? htmlspecialchars($data['lastname_ps']) : ''; ?>" required>
+                <input type="text" class="form-control" id="floatinglastname_ps" name="lastname_ps"
+                value="<?= htmlspecialchars($lastname); ?>" required>
                     <label for="floatinglastname_ps">นามสกุล</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingemail" name="email"
-                           value="<?= isset($data['email']) ? htmlspecialchars($data['email']) : ''; ?>" required>
+                <input type="email" class="form-control" id="floatingemail" name="email"
+                value="<?= htmlspecialchars($email); ?>" required>
                     <label for="floatingemail">อีเมล์</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingbranch" name="branch"
+                value="<?= htmlspecialchars($branch); ?>" required>
+                    <label for="floatingbranch">สาขา</label>
                 </div>
                 <div class="text-center">
                     <button class="btn btn-primary w-25 py-2 mx-2" type="submit">แก้ไข</button>
