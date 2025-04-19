@@ -1,31 +1,32 @@
 <?php
 session_start();
-include 'config.php';
-
-// ตรวจสอบการเข้าสู่ระบบ
-if (!isset($_SESSION['username'])) {
-    header("Location: blackendlogin.php");  // ถ้ายังไม่ได้เข้าสู่ระบบ ให้ไปที่หน้า login
+if (!isset($_SESSION['personnel_id'])) {
+    header("Location: blackendlogin.php");
     exit();
 }
 
-$username = $_SESSION['username'];  // เอาชื่อผู้ใช้จาก session
+$conn = new mysqli("localhost", "root", "", "courseproject");
+$conn->set_charset("utf8");
 
-// รับค่าจากฟอร์ม
-$newPassword = $_POST['password'];
-$newEmail = $_POST['email'];
+$personnel_id = $_SESSION['personnel_id'];
+$name = $_POST['name_ps'];
+$lastname = $_POST['lastname_ps'];
+$email = $_POST['email'];
 
-// อัปเดตข้อมูลในฐานข้อมูล
-$sql = "UPDATE personnel SET password = ?, email = ? WHERE username = ?";
+// ต้องใช้ชื่อ column ให้ตรงกับฐานข้อมูล
+$sql = "UPDATE personnel SET name_ps = ?, lastname_ps = ?, email = ? WHERE personnel_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $newPassword, $newEmail, $username);
-$stmt->execute();
 
-if ($stmt->affected_rows > 0) {
-    echo "ข้อมูลถูกอัปเดตเรียบร้อยแล้ว";
-} else {
-    echo "ไม่สามารถอัปเดตข้อมูลได้";
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
 }
 
-$stmt->close();
-$conn->close();
+$stmt->bind_param("sssi", $name, $lastname, $email, $personnel_id);
+
+if ($stmt->execute()) {
+    header("Location: edit-profile.php");
+    exit();
+} else {
+    echo "เกิดข้อผิดพลาดในการอัปเดตข้อมูล: " . $stmt->error;
+}
 ?>

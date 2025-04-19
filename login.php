@@ -18,7 +18,7 @@ $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
 $_SESSION['username'] = $row['username'];
 $_SESSION['personnel_id'] = $row['personnel_id']; 
-header("Location: edit-profile.php");
+header("Location: blackendhome.php");
 exit();
 } else {
 echo "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
