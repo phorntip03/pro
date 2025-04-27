@@ -175,62 +175,64 @@ if (!isset($_SESSION['username'])) {
                 <form action="update-profile.php" method="post">
                     <div class="row">
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="text" class="form-control" id="name_th_modulecourse" name="name_th_modulecourse" placeholder="ชื่อกลุ่มวิชาภาษาไทย">
-                            <label for="name_th_modulecourse">ชื่อกลุ่มวิชาภาษาไทย</label>
+                            <input type="text" class="form-control" id="name_th_course" name="name_th_course" placeholder="ชื่อกลุ่มวิชาภาษาไทย">
+                            <label for="name_th_course">ชื่อกลุ่มวิชาภาษาไทย</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="text" class="form-control" id="name_eng_modulecourse" name="name_eng_modulecourse" placeholder="ชื่อกลุ่มวิชาภาษาอังกฤษ">
-                            <label for="name_eng_modulecourse">ชื่อกลุ่มวิชาภาษาอังกฤษ</label>
-                        </div>
-
-                        <div class="col-md-6 mb-3 form-floating">
-                            <input type="date" class="form-control" id="modulecourse_open" name="modulecourse_open">
-                            <label for="modulecourse_open">วันเปิดกลุ่มวิชา</label>
+                            <input type="text" class="form-control" id="name_eng_course" name="name_eng_course" placeholder="ชื่อกลุ่มวิชาภาษาอังกฤษ">
+                            <label for="name_eng_course">ชื่อกลุ่มวิชาภาษาอังกฤษ</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="date" class="form-control" id="modulecourse_off" name="modulecourse_off">
-                            <label for="modulecourse_off">วันปิดกลุ่มวิชา</label>
-                        </div>
-
-                        <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="number_of_Student_module" name="number_of_Student_module">
-                            <label for="number_of_Student_module">จำนวนนักเรียน</label>
+                            <input type="date" class="form-control" id="course_open" name="course_open">
+                            <label for="course_open">วันเปิดรายวิชา</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="credit_module" name="credit_module">
-                            <label for="credit_module">หน่วยกิตกลุ่มวิชาเรียน</label>
-                        </div>
-
-                        <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_theory_number" name="module_theory_number">
-                            <label for="module_theory_number">จำนวนทฤษฎี</label>
+                            <input type="date" class="form-control" id="course_off" name="course_off">
+                            <label for="course_off">วันปิดรายวิชา</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_practice_number" name="module_practice_number">
-                            <label for="module_practice_number">จำนวนปฏิบัติ</label>
-                        </div>
-
-                        <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours" name="module_of_hours">
-                            <label for="module_of_hours">จำนวนชั่วโมงเรียนกลุ่มวิชา</label>
+                            <input type="number" class="form-control" id="number_of_Student_cu" name="number_of_Student_cu">
+                            <label for="number_of_Student_cu">จำนวนนักเรียน</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="price_module" name="price_module">
-                            <label for="price_module">ราคากลุ่มวิชาเรียน</label>
-                        </div>
-
-                        <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours_theory" name="module_of_hours_theory">
-                            <label for="module_of_hours_theory">จำนวนชั่วโมงทฤษฎีกลุ่มวิชา</label>
+                            <input type="number" class="form-control" id="credit_course" name="credit_course">
+                            <label for="credit_course">หน่วยกิตกลุ่มวิชาเรียน</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours_practice" name="module_of_hours_practice">
-                            <label for="module_of_hours_practice">จำนวนชั่วโมงปฎิบัติกลุ่มวิชา</label>
+                            <input type="number" class="form-control" id="course_theory_number" name="course_theory_number">
+                            <label for="course_theory_number">จำนวนทฤษฎี</label>
                         </div>
-
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="number" class="form-control" id="course_practice_number" name="course_practice_number">
+                            <label for="course_practice_number">จำนวนปฏิบัติ</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="number" class="form-control" id="course_of_hours" name="course_of_hours">
+                            <label for="course_of_hours">จำนวนชั่วโมงเรียนรายวิชา</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="number" class="form-control" id="price_course" name="price_course">
+                            <label for="price_course">ราคากลุ่มวิชาเรียน</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="number" class="form-control" id="course_of_hours_theory" name="course_of_hours_theory">
+                            <label for="course_of_hours_theory">จำนวนชั่วโมงทฤษฎีรายวิชา</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="number" class="form-control" id="course_of_hours_practice" name="course_of_hours_practice">
+                            <label for="course_of_hours_practice">จำนวนชั่วโมงปฎิบัติรายวิชา</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="date" class="form-control" id="start_course" name="start_course">
+                            <label for="start_course">วันที่เริ่มเรียน</label>
+                        </div>
+                        <div class="col-md-6 mb-3 form-floating">
+                            <input type="date" class="form-control" id="close_course" name="close_course">
+                            <label for="close_course">วันที่จบการเรียน</label>
+                        </div>
                         <div class="col-12 mb-3 form-floating">
-                            <input type="text" class="form-control" id="details_module" name="details_module" placeholder="รายละเอียดกลุ่มวิชา">
-                            <label for="details_module">รายละเอียดกลุ่มวิชา</label>
+                            <input type="text" class="form-control" id="details_corse" name="details_corse" placeholder="รายละเอียดรายวิชา">
+                            <label for="details_corse">รายละเอียดรายวิชา</label>
                         </div>
                     </div>
 
