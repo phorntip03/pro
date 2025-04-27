@@ -14,6 +14,7 @@ if (!isset($_SESSION['username'])) {
     <title>แก้ไขข้อมูลส่วนตัว</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -129,25 +130,27 @@ if (!isset($_SESSION['username'])) {
                 </li>
             <hr>
 
-            <!-- เมนูใหม่ที่เพิ่ม -->
+            <!-- เมนู -->
             <div class="menu-section">แก้ไขข้อมูลส่วนตัว</div>
             <ul class="menu-list">
-                <li><a href="edit-profile.php">แก้ไขประวัติ</a></li>
-                <li><a href="edit-branch.php">แก้ไขข้อมูลสาขา</a></li>
+                <li><a href="edit-profile.php"><i class="fas fa-user-edit"></i> แก้ไขประวัติ</a></li>
+                <li><a href="edit-branch.php"><i class="fas fa-code-branch"></i> แก้ไขข้อมูลสาขา</a></li>
             </ul>
 
             <div class="menu-section">เพิ่มคอร์ส</div>
             <ul class="menu-list">
-                <li><a href="add-group.php">เพิ่มกลุ่มวิชา</a></li>
-                <li><a href="add-subject.php">เพิ่มรายวิชา</a></li>
+                <li><a href="add-group.php"><i class="fas fa-layer-group"></i> เพิ่มกลุ่มวิชา</a></li>
+                <li><a href="add-subject.php"><i class="fas fa-book-open"></i> เพิ่มรายวิชา</a></li>
             </ul>
 
+            
+            <div class="menu-section">เมนูทั่วไป</div>
             <ul class="menu-list">
-                <li><a href="check-registration.php">ตรวจสอบจำนวนผู้ลงทะเบียนเรียน</a></li>
-                <li><a href="view-courses.php">ดูคอร์สเรียน</a></li>
-                <li><a href="results.php">ผลการเรียน</a></li>
-                <li><a href="finance-report.php">รายงานการเงิน</a></li>
-                <li><a href="reset-password.php">ตั้งค่ารหัสผ่าน</a></li>
+                <li><a href="check-registration.php"><i class="fas fa-user-check"></i> ตรวจสอบจำนวนผู้ลงทะเบียนเรียน</a></li>
+                <li><a href="view-courses.php"><i class="fas fa-book"></i> ดูคอร์สเรียน</a></li>
+                <li><a href="results.php"><i class="fas fa-poll"></i> ผลการเรียน</a></li>
+                <li><a href="finance-report.php"><i class="fas fa-file-invoice-dollar"></i> รายงานการเงิน</a></li>
+                <li><a href="reset-password.php"><i class="fas fa-key"></i> ตั้งค่ารหัสผ่าน</a></li>
             </ul>
 
             <hr>
