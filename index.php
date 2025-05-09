@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-image: url('img/i1.jpg'); 
+      background-image: url('assets/img/i1.jpg'); 
       background-size: cover; /* ปรับให้เต็มหน้าจอ */
       background-position: center; /* จัดตำแหน่งกึ่งกลาง */
       background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
@@ -59,8 +59,8 @@
 </head>
 <body>
   <main class="form-signin">
-    <form action="login.php" method="post">
-      <img src="img/logo1.gif" alt="Logo" width="100" height="150">
+    <form action="auth/login.php" method="post">
+      <img src="assets/img/logo1.gif" alt="Logo" width="100" height="150">
       <h1 class="h3 mb-3 fw-normal">เข้าสู่ระบบ</h1>
 
       <div class="form-floating mb-3">
@@ -80,7 +80,7 @@
   </script>
   <script>
     document.getElementById('cancelButton').addEventListener('click', function() {
-      window.location.href = 'blackendhome.php'; 
+      window.location.href = 'admin/blackendhome.php'; 
     });
   </script>
 </body>

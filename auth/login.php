@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; 
+include '../backend/config/connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
@@ -18,7 +18,7 @@ $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
 $_SESSION['username'] = $row['username'];
 $_SESSION['personnel_id'] = $row['personnel_id']; 
-header("Location: blackendhome.php");
+header("Location: ../admin/blackendhome.php");
 exit();
 } else {
 echo "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
