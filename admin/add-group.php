@@ -43,47 +43,47 @@ if (!isset($_SESSION['username'])) {
                         </div>
 
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="date" class="form-control" id="modulecourse_open" name="modulecourse_open">
+                            <input type="date" class="form-control" id="modulecourse_open" name="modulecourse_open" placeholder="วันเปิดกลุ่มวิชา">
                             <label for="modulecourse_open">วันเปิดกลุ่มวิชา</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="date" class="form-control" id="modulecourse_off" name="modulecourse_off">
+                            <input type="date" class="form-control" id="modulecourse_off" name="modulecourse_off" placeholder="วันปิดกลุ่มวิชา">
                             <label for="modulecourse_off">วันปิดกลุ่มวิชา</label>
                         </div>
 
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="number_of_Student_module" name="number_of_Student_module">
+                            <input type="number" class="form-control" id="number_of_Student_module" name="number_of_Student_module" placeholder=">จำนวนนักเรียน">
                             <label for="number_of_Student_module">จำนวนนักเรียน</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="credit_module" name="credit_module">
+                            <input type="number" class="form-control" id="credit_module" name="credit_module" placeholder="หน่วยกิตกลุ่มวิชาเรียน">
                             <label for="credit_module">หน่วยกิตกลุ่มวิชาเรียน</label>
                         </div>
 
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_theory_number" name="module_theory_number">
+                            <input type="number" class="form-control" id="module_theory_number" name="module_theory_number" placeholder="จำนวนทฤษฎี">
                             <label for="module_theory_number">จำนวนทฤษฎี</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_practice_number" name="module_practice_number">
+                            <input type="number" class="form-control" id="module_practice_number" name="module_practice_number" placeholder="จำนวนปฏิบัติ">
                             <label for="module_practice_number">จำนวนปฏิบัติ</label>
                         </div>
 
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours" name="module_of_hours">
+                            <input type="number" class="form-control" id="module_of_hours" name="module_of_hours" placeholder="จำนวนชั่วโมงเรียนกลุ่มวิชา">
                             <label for="module_of_hours">จำนวนชั่วโมงเรียนกลุ่มวิชา</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="price_module" name="price_module">
+                            <input type="number" class="form-control" id="price_module" name="price_module" placeholder="ราคากลุ่มวิชาเรียน">
                             <label for="price_module">ราคากลุ่มวิชาเรียน</label>
                         </div>
 
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours_theory" name="module_of_hours_theory">
+                            <input type="number" class="form-control" id="module_of_hours_theory" name="module_of_hours_theory" placeholder="จำนวนชั่วโมงทฤษฎีกลุ่มวิชา">
                             <label for="module_of_hours_theory">จำนวนชั่วโมงทฤษฎีกลุ่มวิชา</label>
                         </div>
                         <div class="col-md-6 mb-3 form-floating">
-                            <input type="number" class="form-control" id="module_of_hours_practice" name="module_of_hours_practice">
+                            <input type="number" class="form-control" id="module_of_hours_practice" name="module_of_hours_practice" placeholder="จำนวนชั่วโมงปฎิบัติกลุ่มวิชา">
                             <label for="module_of_hours_practice">จำนวนชั่วโมงปฎิบัติกลุ่มวิชา</label>
                         </div>
 
