@@ -71,3 +71,16 @@ h2 {
         padding: 15px;
     }
 }
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+}
+
+.btn-secondary {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+}
