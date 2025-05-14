@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
     
     <div class="dropdown ms-auto">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-            <img src="../assets/img/i2.jpg" alt="Profile" width="32" height="32" class="rounded-circle me-2">
+        <img src="../uploads/<?= htmlspecialchars($profileImage); ?>" alt="Profile" width="32" height="32" class="rounded-circle me-2">
             <strong><?= htmlspecialchars($_SESSION['username']); ?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-end text-small shadow">
