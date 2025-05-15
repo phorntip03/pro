@@ -32,7 +32,7 @@ $result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <title>คอร์สเรียนของฉัน</title>
@@ -70,7 +70,7 @@ $result = $stmt->get_result();
                                     if (!empty($row['name_th_modulecourse'])) {
                                         $modules = explode(', ', $row['name_th_modulecourse']);
                                         foreach ($modules as $module) {
-                                            echo '<span class="badge badge-module text-light">' . htmlspecialchars($module) . '</span>';
+                                            echo '<span class="badge bg-primary text-light me-1">' . htmlspecialchars($module) . '</span>';
                                         }
                                     } else {
                                         echo '<span class="text-muted">ยังไม่มีโมดูล</span>';
@@ -78,8 +78,11 @@ $result = $stmt->get_result();
                                     ?>
                                 </td>
                                 <td class="text-center">
-                                    <a href="edit_course.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil-square"></i> แก้ไข
+                                    <a href="edit_course.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i> แก้ไขคอร์ส
+                                    </a>
+                                    <a href="edit_module.php?course_id=<?php echo $row['course_id']; ?>" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-list-task"></i> จัดการโมดูล
                                     </a>
                                 </td>
                             </tr>
