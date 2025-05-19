@@ -4,7 +4,7 @@
     <a href="../user/edit-profile.php" class="fw-bold">✏️ แก้ไขประวัติ</a>
     <a href="../admin/branch-manage.php">🌿 แก้ไขสาขา</a>
     <hr>
-    <a href="../admin/add-group.php">➕ เพิ่มกลุ่มวิชา</a>
+    <a href="../admin/add-module.php">➕ เพิ่มกลุ่มวิชา</a>
     <a href="../admin/add-subject.php">📘 เพิ่มรายวิชา</a>
     <hr>
     <a href="../admin/check-registration.php">👨‍🎓 ตรวจสอบการลงทะเบียน</a>

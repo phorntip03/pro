@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
+<div class="row">
+<?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
 <div class="container mt-5">
     <h1>แก้ไขสาขา</h1>
     <form method="post" class="mt-4">
@@ -45,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit" class="btn btn-primary">💾 บันทึก</button>
         <a href="branch-manage.php" class="btn btn-secondary">↩️ กลับ</a>
     </form>
+</div>
 </div>
 </body>
 </html>

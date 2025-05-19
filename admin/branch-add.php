@@ -28,13 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
+<div class="container-fluid">
+    <div class="row">
+        <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
 <div class="container mt-5">
     <h1>เพิ่มสาขาใหม่</h1>
     <form method="post" class="mt-4">
-    <div class="mb-3">
-            <label for="branch_id" class="form-label">ลำดับที่</label>
-            <input type="text" name="branch_id" id="branch_id" class="form-control" required>
-        </div>
         <div class="mb-3">
             <label for="namebranch" class="form-label">ชื่อสาขา</label>
             <input type="text" name="namebranch" id="namebranch" class="form-control" required>
@@ -42,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit" class="btn btn-success">✅ บันทึก</button>
         <a href="branch-manage.php" class="btn btn-secondary">↩️ กลับ</a>
     </form>
+</div>
 </div>
 </body>
 </html>

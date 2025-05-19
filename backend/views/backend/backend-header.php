@@ -22,7 +22,7 @@ if (empty($imgName) || !file_exists($_SERVER['DOCUMENT_ROOT'] . $imgWebPath)) {
             <strong><?= htmlspecialchars($_SESSION['username']); ?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-end text-small shadow">
-            <li><a class="dropdown-item" href="../admin/add-group.php">➕ เพิ่มกลุ่มวิชา</a></li>
+            <li><a class="dropdown-item" href="../admin/add-module.php">➕ เพิ่มกลุ่มวิชา</a></li>
             <li><a class="dropdown-item" href="../admin/add-subject.php">📘 เพิ่มรายวิชา</a></li>
             <li><a class="dropdown-item" href="../user/edit-profile.php">👤 โปรไฟล์</a></li>
             <li><hr class="dropdown-divider"></li>

@@ -9,7 +9,6 @@ if (!isset($_SESSION['username'])) {
 
 $personnel_id = $_SESSION['personnel_id'];
 
-// ดึงชื่อคอร์สและชื่อโมดูลจาก module_course โดยไม่ใช้ตาราง module
 $sql = "
     SELECT 
         c.course_id,
@@ -39,6 +38,7 @@ $result = $stmt->get_result();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/backend-style.css">
     <link rel="stylesheet" href="../assets/css/view-courses-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
 <?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
@@ -51,12 +51,13 @@ $result = $stmt->get_result();
             <div class="card p-4">
                 <h3 class="mb-4 text-primary"><i class="bi bi-journal-bookmark-fill"></i> คอร์สเรียนของคุณ</h3>
 
-                <table class="table table-hover table-bordered align-middle">
-                    <thead>
-                        <tr class="text-center">
+                <table class="table table-hover table-bordered align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
                             <th>ชื่อคอร์ส</th>
                             <th>โมดูลในคอร์ส</th>
-                            <th>จัดการ</th>
+                            <th style="width: 140px;">แก้ไขคอร์ส</th>
+                            <th style="width: 140px;">จัดการโมดูล</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,25 +65,27 @@ $result = $stmt->get_result();
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) { ?>
                             <tr>
-                                <td class="fw-bold"><?php echo htmlspecialchars($row['name_th_course'] ?? 'ไม่มีชื่อคอร์ส'); ?></td>
-                                <td>
+                                <td class="fw-bold text-start"><?php echo htmlspecialchars($row['name_th_course'] ?? 'ไม่มีชื่อคอร์ส'); ?></td>
+                                <td class="text-start">
                                     <?php 
                                     if (!empty($row['name_th_modulecourse'])) {
                                         $modules = explode(', ', $row['name_th_modulecourse']);
                                         foreach ($modules as $module) {
-                                            echo '<span class="badge bg-primary text-light me-1">' . htmlspecialchars($module) . '</span>';
+                                            echo '<span class="badge bg-primary text-light me-1 mb-1">' . htmlspecialchars($module) . '</span>';
                                         }
                                     } else {
                                         echo '<span class="text-muted">ยังไม่มีโมดูล</span>';
                                     }
                                     ?>
                                 </td>
-                                <td class="text-center">
-                                    <a href="edit_course.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm mb-1">
-                                        <i class="bi bi-pencil-square"></i> แก้ไขคอร์ส
+                                <td>
+                                    <a href="edit_course.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm w-100">
+                                        <i class="bi bi-pencil-square"></i> แก้ไข
                                     </a>
-                                    <a href="edit_module.php?course_id=<?php echo $row['course_id']; ?>" class="btn btn-primary btn-sm">
-                                        <i class="bi bi-list-task"></i> จัดการโมดูล
+                                </td>
+                                <td>
+                                    <a href="edit_module.php?course_id=<?php echo $row['course_id']; ?>" class="btn btn-primary btn-sm w-100">
+                                        <i class="bi bi-list-task"></i> โมดูล
                                     </a>
                                 </td>
                             </tr>
@@ -90,7 +93,7 @@ $result = $stmt->get_result();
                             }
                         } else { ?>
                             <tr>
-                                <td colspan="3" class="text-center text-muted">ยังไม่มีคอร์ส</td>
+                                <td colspan="4" class="text-center text-muted">ยังไม่มีคอร์ส</td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -100,7 +103,5 @@ $result = $stmt->get_result();
     </div>
 </div>
 
-<!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </body>
 </html>
