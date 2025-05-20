@@ -28,6 +28,13 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $personnel_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
+// เช็คว่ามีข้อความ toast_success ส่งมาหรือไม่
+$toast_success = "";
+if (isset($_SESSION['toast_success'])) {
+    $toast_success = $_SESSION['toast_success'];
+    unset($_SESSION['toast_success']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +86,7 @@ $result = $stmt->get_result();
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="edit_course.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm w-100">
+                                    <a href="edit_subject.php?id=<?php echo $row['course_id']; ?>" class="btn btn-warning btn-sm w-100">
                                         <i class="bi bi-pencil-square"></i> แก้ไข
                                     </a>
                                 </td>
@@ -102,6 +109,22 @@ $result = $stmt->get_result();
         </div>
     </div>
 </div>
+
+<?php if (!empty($toast_success)): ?>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+        <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true" id="toast-success">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <?php echo htmlspecialchars($toast_success); ?>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
