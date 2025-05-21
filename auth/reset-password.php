@@ -16,11 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    // ตรวจสอบว่ารหัสผ่านใหม่ตรงกันไหม
     if ($newPassword !== $confirmPassword) {
         $error = "รหัสผ่านใหม่และยืนยันไม่ตรงกัน";
     } else {
-        // ดึงรหัสผ่านจากฐานข้อมูล
         $stmt = $conn->prepare("SELECT password FROM login WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -31,10 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$storedPassword) {
             $error = "ไม่พบข้อมูลผู้ใช้";
         } else {
-            // ตรวจสอบรหัสผ่านเดิม
-            if (password_verify($currentPassword, $storedPassword) || $currentPassword === $storedPassword) {
-                // แฮชรหัสผ่านใหม่
-                $Password = password($newPassword, PASSWORD_DEFAULT);
+            if ($currentPassword === $storedPassword) {
+                $Password = $newPassword;
                 $stmt = $conn->prepare("UPDATE login SET password = ? WHERE username = ?");
                 $stmt->bind_param("ss", $Password, $username);
                 if ($stmt->execute()) {
@@ -61,14 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-light">
 
-    <!-- Header -->
     <?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
 
     <div class="d-flex">
-        <!-- Sidebar -->
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
 
-        <!-- Main content -->
         <div class="container py-5">
             <h2 class="mb-4">เปลี่ยนรหัสผ่าน</h2>
 
@@ -118,22 +111,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-    window.togglePassword = function(id, btn) {
-        const input = document.getElementById(id);
-        const icon = btn.querySelector('i');
+        window.togglePassword = function(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('i');
 
-        if (input.type === "password") {
-            input.type = "text";
-            icon.classList.remove("bi-eye");
-            icon.classList.add("bi-eye-slash");
-            btn.setAttribute("title", "ซ่อนรหัสผ่าน");
-        } else {
-            input.type = "password";
-            icon.classList.remove("bi-eye-slash");
-            icon.classList.add("bi-eye");
-            btn.setAttribute("title", "ดูรหัสผ่าน");
-        }
-    };
-});</script>
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+                btn.setAttribute("title", "ซ่อนรหัสผ่าน");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+                btn.setAttribute("title", "ดูรหัสผ่าน");
+            }
+        };
+    });
+    </script>
 </body>
 </html>
