@@ -31,7 +31,7 @@ if (!isset($_SESSION['username'])) {
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
         <div class="col-md-9 mt-5">
             <div class="card p-4">
-                <h3 class="mb-4 text-primary"><i class="bi bi-journal-bookmark-fill"></i> รายชื่อนักเรียนลงทะเบียน</h3>
+                <h3 class="mb-4 text-primary"><i class="bi bi-journal-bookmark-fill"></i> รายชื่อนักเรียน</h3>
 
                 <table class="table table-hover table-bordered align-middle text-center">
                     <thead class="table-light">
