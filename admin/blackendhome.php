@@ -4,6 +4,43 @@ if (!isset($_SESSION['username'])) {
     header("Location: blackendlogin.php");
     exit();
 }
+include '../backend/config/connect.php';
+
+// ดึงรายรับรายวิชา
+$sqlCourse = "
+    SELECT 
+        c.name_th_course AS name,
+        (c.price_course * COUNT(s.student_id)) AS income
+    FROM course c
+    LEFT JOIN student s ON c.course_id = s.course_id
+    GROUP BY c.course_id
+";
+$resultCourse = $conn->query($sqlCourse);
+$courseLabels = [];
+$courseData = [];
+
+while ($row = $resultCourse->fetch_assoc()) {
+    $courseLabels[] = $row['name'];
+    $courseData[] = $row['income'];
+}
+
+// ดึงรายรับกลุ่มวิชา
+$sqlModule = "
+    SELECT 
+        m.name_th_modulecourse AS name,
+        (m.price_module * COUNT(s.student_id)) AS income
+    FROM module_course m
+    LEFT JOIN student s ON m.modulecourse_id = s.modulecourse_id
+    GROUP BY m.modulecourse_id
+";
+$resultModule = $conn->query($sqlModule);
+$moduleLabels = [];
+$moduleData = [];
+
+while ($row = $resultModule->fetch_assoc()) {
+    $moduleLabels[] = $row['name'];
+    $moduleData[] = $row['income'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -11,15 +48,17 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <title>ระบบหลังบ้าน</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Custom CSS -->
     <link href="../assets/css/backend-style.css" rel="stylesheet">
-
 </head>
 <body class="bg-light">
 
@@ -93,8 +132,8 @@ if (!isset($_SESSION['username'])) {
                     <div class="col-12 col-md-6">
                         <div class="card shadow h-100 text-center border-0">
                             <div class="card-body">
-                                <h4 class="card-title text-primary">📈 รายงานสถิติ</h4>
-                                <img src="https://via.placeholder.com/500x300" class="img-fluid rounded mt-3 shadow-sm" alt="สถิติ">
+                                <h4 class="card-title text-primary">📈 รายงานสถิติรายรับ</h4>
+                                <canvas id="incomeChart" height="200" class="mt-3"></canvas>
                             </div>
                         </div>
                     </div>
@@ -102,6 +141,49 @@ if (!isset($_SESSION['username'])) {
             </div>
         </main>
     </div>
+
+    <!-- Chart Script -->
+    <script>
+        const ctx = document.getElementById('incomeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode(array_merge($courseLabels, $moduleLabels)); ?>,
+                datasets: [{
+                    label: 'รายรับ (บาท)',
+                    data: <?php echo json_encode(array_merge($courseData, $moduleData)); ?>,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString() + ' บาท';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw.toLocaleString() + ' บาท';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
