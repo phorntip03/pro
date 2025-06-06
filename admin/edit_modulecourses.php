@@ -14,7 +14,6 @@ if (!$modulecourse_id) {
     exit();
 }
 
-// ดึงข้อมูลโมดูล
 $sql = "SELECT * FROM module_course WHERE modulecourse_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $modulecourse_id);
@@ -27,7 +26,6 @@ if (!$module) {
     exit();
 }
 
-// เมื่อมีการบันทึก
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name_th         = $_POST['name_th_modulecourse'];
     $name_eng        = $_POST['name_eng_modulecourse'];
@@ -92,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
  
-        <div class="card p-4 col-md-8 offset-md-2 module-editor">
-            <div class="card p-4 col-md-8 offset-md-2">
+        <div class="card p-2 col-md-8 offset-md-1 module-editor">
+            <div class="card p-4 col-md-15 offset-md-2">
                 <h3 class="mb-4 text-primary">
                     <i class="bi bi-pencil-square"></i> แก้ไขข้อมูลโมดูล
                 </h3>

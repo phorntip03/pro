@@ -43,47 +43,52 @@ include '../backend/config/connect.php';
                 </thead>
                 <tbody>
                 <?php
-                $sql = "SELECT s.student_id, s.name_st, s.lastname_st, c.name_th_course, m.name_th_modulecourse, r.result_status
-                        FROM student s
-                        LEFT JOIN course c ON s.course_id = c.course_id
-                        LEFT JOIN module_course m ON s.modulecourse_id = m.modulecourse_id
-                        LEFT JOIN confirm_academic_results r 
-                            ON s.student_id = r.student_id 
-                            AND s.course_id = r.course_id
-                            AND s.modulecourse_id = r.modulecourse_id";
+               $sql = "SELECT  s.student_id,s.name_st,s.lastname_st,s.course_id,s.modulecourse_id,c.name_th_course, 
+            m.name_th_modulecourse,r.result_status
+        FROM student s
+        LEFT JOIN course c ON s.course_id = c.course_id
+        LEFT JOIN module_course m ON s.modulecourse_id = m.modulecourse_id
+        LEFT JOIN confirm_academic_results r 
+            ON s.student_id = r.student_id 
+            AND s.course_id = r.course_id
+            AND s.modulecourse_id = r.modulecourse_id";
                 $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        $studentId = $row['student_id'];
+                        $courseId = $row['course_id'];
+                        $moduleId = $row['modulecourse_id'];
+                        $resultStatus = $row['result_status'];
+                        $resultText = $resultStatus === 'pass' ? "<span class='text-success'>ผ่าน</span>" :
+                                    ($resultStatus === 'fail' ? "<span class='text-danger'>ไม่ผ่าน</span>" : "<span class='text-secondary'>รอประเมิน</span>");
+                        echo "<tr id='row-$studentId'>
+                            <td>{$row['name_st']} {$row['lastname_st']}</td>
+                            <td>{$row['name_th_course']}</td>
+                            <td>{$row['name_th_modulecourse']}</td>
+                            <td id='result-cell-$studentId'>";
 
-                while ($row = $result->fetch_assoc()) {
-                    $studentId = $row['student_id'];
-                    $resultStatus = $row['result_status'];
-                    $resultText = $resultStatus === 'pass' ? "<span class='text-success'>ผ่าน</span>" :
-                                  ($resultStatus === 'fail' ? "<span class='text-danger'>ไม่ผ่าน</span>" : "<span class='text-secondary'>รอประเมิน</span>");
+                        if (!$resultStatus) {
+                            echo "<button class='btn btn-success btn-sm' 
+                                    onclick=\"submitResult($studentId, $courseId, $moduleId, 'pass')\">ผ่าน</button>
+                                <button class='btn btn-danger btn-sm' 
+                                    onclick=\"submitResult($studentId, $courseId, $moduleId, 'fail')\">ไม่ผ่าน</button>
+                                <div class='mt-2' id='status-text-$studentId'>$resultText</div>";
+                        } else {
+                            echo "<div class='mt-2'>$resultText</div>";
+                        }
 
-                    echo "<tr id='row-$studentId'>
-                        <td>{$row['name_st']} {$row['lastname_st']}</td>
-                        <td>{$row['name_th_course']}</td>
-                        <td>{$row['name_th_modulecourse']}</td>
-                        <td id='result-cell-$studentId'>";
+                        echo "</td>
+                            <td id='cert-cell-$studentId'>";
 
-                    if (!$resultStatus) {
-                        echo "<button class='btn btn-success btn-sm' onclick=\"submitResult($studentId, 'pass')\">ผ่าน</button>
-                              <button class='btn btn-danger btn-sm' onclick=\"submitResult($studentId, 'fail')\">ไม่ผ่าน</button>
-                              <div class='mt-2' id='status-text-$studentId'>$resultText</div>";
-                    } else {
-                        echo "<div class='mt-2'>$resultText</div>";
+                        if ($resultStatus === 'pass') {
+                            echo "<a href='certificate-image.php?student_id=$studentId' target='_blank'>
+                                    <img src='certificate-image.php?student_id=$studentId' class='img-fluid' style='max-height: 100px;'>
+                                </a>";
+                        } else {
+                            echo "<button class='btn btn-secondary btn-sm' disabled>ยังไม่ผ่าน</button>";
+                        }
+
+                        echo "</td></tr>";
                     }
-
-                    echo "</td>
-                        <td id='cert-cell-$studentId'>";
-
-                    if ($resultStatus === 'pass') {
-                        echo "<img src='certificate-image.php?student_id=$studentId' class='img-fluid' style='max-height: 100px;'>";
-                    } else {
-                        echo "<button class='btn btn-secondary btn-sm' disabled>ยังไม่ผ่าน</button>";
-                    }
-
-                    echo "</td></tr>";
-                }
                 ?>
                 </tbody>
             </table>
@@ -92,11 +97,11 @@ include '../backend/config/connect.php';
 </div>
 
 <script>
-function submitResult(studentId, result) {
+function submitResult(studentId, courseId, moduleId, result) {
     fetch('confirm-result.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `student_id=${studentId}&result=${result}`
+        body: `student_id=${studentId}&course_id=${courseId}&modulecourse_id=${moduleId}&result=${result}`
     })
     .then(res => res.json())
     .then(data => {
@@ -108,7 +113,9 @@ function submitResult(studentId, result) {
 
             if (result === 'pass') {
                 document.getElementById('cert-cell-' + studentId).innerHTML =
-                    `<img src="certificate-image.php?student_id=${studentId}" class="img-fluid" style="max-height: 100px;">`;
+                    `<a href="certificate-image.php?student_id=${studentId}" target="_blank">
+                        <img src="certificate-image.php?student_id=${studentId}" class="img-fluid" style="max-height: 100px;">
+                    </a>`;
             } else {
                 document.getElementById('cert-cell-' + studentId).innerHTML =
                     `<button class="btn btn-secondary btn-sm" disabled>ยังไม่ผ่าน</button>`;
