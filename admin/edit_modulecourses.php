@@ -14,7 +14,6 @@ if (!$modulecourse_id) {
     exit();
 }
 
-// ดึงข้อมูลโมดูล
 $sql = "SELECT * FROM module_course WHERE modulecourse_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $modulecourse_id);
@@ -27,7 +26,6 @@ if (!$module) {
     exit();
 }
 
-// เมื่อมีการบันทึก
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name_th         = $_POST['name_th_modulecourse'];
     $name_eng        = $_POST['name_eng_modulecourse'];

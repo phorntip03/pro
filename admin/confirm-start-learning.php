@@ -18,17 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $check->get_result();
 
     if ($result->num_rows > 0) {
-        // อัปเดตสถานะเดิม
+       
         $sql = $conn->prepare("UPDATE studentstatus SET namestatus_st = ? WHERE student_id = ?");
         $sql->bind_param("si", $status, $student_id);
     } else {
-        // เพิ่มสถานะใหม่
+      
         $sql = $conn->prepare("INSERT INTO studentstatus (student_id, namestatus_st) VALUES (?, ?)");
         $sql->bind_param("is", $student_id, $status);
     }
 
     if ($sql->execute()) {
-        // กลับไปที่หน้าแสดงรายชื่อนักเรียนหลังอัปเดต
+      
         header("Location: check-registration.php");
         exit();
     } else {
