@@ -7,7 +7,6 @@ if (!isset($_GET['student_id'])) {
 
 $student_id = intval($_GET['student_id']);
 
-// ดึงข้อมูลนักเรียน, คอร์ส และโมดูล
 $sql = "SELECT 
             s.name_st, 
             s.lastname_st, 
@@ -32,7 +31,7 @@ $student_name = $data['name_st'] . " " . $data['lastname_st'];
 $course_name = $data['name_th_course'];
 $module_name = $data['name_th_modulecourse'];
 
-// สร้างภาพ
+
 $image_path = '../assets/certificate/c1.png';
 if (!file_exists($image_path)) {
     die("Certificate image not found.");
@@ -42,18 +41,18 @@ header('Content-Type: image/png');
 $image = imagecreatefrompng($image_path);
 $black = imagecolorallocate($image, 0, 0, 0);
 
-// โหลดฟอนต์
+
 $font_path = '../assets/fonts/THSarabunNew.ttf';
 if (!file_exists($font_path)) {
     die("Font file not found.");
 }
 
-// วาดข้อความลงบนภาพ
+
 imagettftext($image, 48, 0, 300, 340, $black, $font_path, $student_name);
 imagettftext($image, 36, 0, 300, 410, $black, $font_path, $course_name);
 imagettftext($image, 36, 0, 300, 480, $black, $font_path, $module_name);
 
-// ส่งภาพออกไป
+
 imagepng($image);
 imagedestroy($image);
 ?>
