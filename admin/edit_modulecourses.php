@@ -91,7 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
  
         <div class="card p-2 col-md-8 offset-md-1 module-editor">
+<<<<<<< HEAD
             <div class="card p-3 col-md-15 offset-md-2">
+=======
+            <div class="card p-4 col-md-15 offset-md-2">
+>>>>>>> d62e77831863e8d8bb6ee6dbf0ee66b636e3e53b
                 <h3 class="mb-4 text-primary">
                     <i class="bi bi-pencil-square"></i> แก้ไขข้อมูลโมดูล
                 </h3>
