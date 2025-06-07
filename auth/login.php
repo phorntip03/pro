@@ -6,11 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($conn->real_escape_string($_POST['username']));
     $password = trim($conn->real_escape_string($_POST['password']));
 
-    // JOIN กับ personnel 
-    $sql = "SELECT l.personnel_id, l.username, p.img_ps
-            FROM login l
-            JOIN personnel p ON l.personnel_id = p.personnel_id
-            WHERE l.username = ? AND l.password = ?";
+    // เอา JOIN ออก
+    $sql = "SELECT id, username FROM login WHERE username = ? AND password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -19,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = $result->fetch_assoc()) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['personnel_id'] = $row['personnel_id'];
-        $_SESSION['img_ps'] = $row['img_ps']; 
+        $_SESSION['student_id'] = $row['student_id'];
 
         header("Location: ../admin/blackendhome.php");
         exit();

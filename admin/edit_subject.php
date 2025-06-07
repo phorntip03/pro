@@ -42,7 +42,7 @@ $course = $result->fetch_assoc();
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
 
-        <div class="container mt-5">
+        <div class="card p-3 col-md-8 offset-md-1">
             <h3 class="mb-4">แก้ไขข้อมูลคอร์ส</h3>
             <form action="../auth/update_course.php" method="POST">
                 <input type="hidden" name="course_id" value="<?= htmlspecialchars($course['course_id']) ?>">
@@ -124,9 +124,10 @@ $course = $result->fetch_assoc();
                         <input type="number" class="form-control" name="course_practice_number" value="<?= $course['course_practice_number'] ?>">
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-success">บันทึกการแก้ไข</button>
-                <a href="course_list.php" class="btn btn-secondary">ย้อนกลับ</a>
+                <div class="d-flex justify-content-between">
+                <a href="../admin/view-courses.php" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> ย้อนกลับ</a> </button>
+                <button type="submit" class="btn btn-success"> <i class="bi bi-save"></i> บันทึกการแก้ไข</button>
+                </div>
             </form>
         </div>
     </div>

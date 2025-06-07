@@ -4,13 +4,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: blackendlogin.php");
     exit();
 }
-
-$imgName = $_SESSION['img_ps'] ?? '';
-$imgWebPath = '/uploads/' . basename($imgName);
-
-if (empty($imgName) || !file_exists($_SERVER['DOCUMENT_ROOT'] . $imgWebPath)) {
-    $imgWebPath = '/assets/images/default-profile.png';
-}
 ?>
 
 <header class="d-flex align-items-center justify-content-between px-3 py-2 bg-dark">
@@ -18,7 +11,6 @@ if (empty($imgName) || !file_exists($_SERVER['DOCUMENT_ROOT'] . $imgWebPath)) {
 
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-            <img src="<?= htmlspecialchars($imgWebPath); ?>" alt="Profile" width="32" height="32" class="rounded-circle me-2">
             <strong><?= htmlspecialchars($_SESSION['username']); ?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-end text-small shadow">

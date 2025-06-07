@@ -1,7 +1,7 @@
 <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar">
     <h4 class="mb-4">เมนู</h4>
     <a href="../admin/blackendhome.php">🏠 หน้าหลัก</a>
-    <a href="../user/edit-profile.php" class="fw-bold">✏️ แก้ไขประวัติ</a>
+    <a href="../user/add-personnel.php" class="fw-bold">✏️เพิ่มบุคลากร</a>
     <a href="../admin/branch-manage.php">🌿 แก้ไขสาขา</a>
     <hr>
     <a href="../admin/add-module.php">➕ เพิ่มกลุ่มวิชา</a>

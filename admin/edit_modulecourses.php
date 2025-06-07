@@ -90,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
  
-        <div class="card p-4 col-md-8 offset-md-2 module-editor">
-            <div class="card p-4 col-md-8 offset-md-2">
+        <div class="card p-2 col-md-8 offset-md-1 module-editor">
+            <div class="card p-3 col-md-15 offset-md-2">
                 <h3 class="mb-4 text-primary">
                     <i class="bi bi-pencil-square"></i> แก้ไขข้อมูลโมดูล
                 </h3>
