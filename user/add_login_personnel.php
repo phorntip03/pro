@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $img_ps = $img_name;
         } else {
             $_SESSION['msg'] = 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ';
-            header("Location: edit-profile.php");
+            header("Location: personnel_list.php");
             exit();
         }
     }
@@ -37,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         $_SESSION['msg'] = "✅ เพิ่มข้อมูลบุคลากรเรียบร้อยแล้ว";
-        header("Location: ../user/update-personnel.php");
+        header("Location: ../user/personnel_list.php");
         exit();
     } else {
         $_SESSION['msg'] = "❌ เกิดข้อผิดพลาดในการเพิ่มข้อมูลบุคลากร: " . $stmt->error;
-        header("Location: edit-profile.php");
+        header("Location: personnel_list.php");
         exit();
     }
 }

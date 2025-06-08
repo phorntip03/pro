@@ -41,7 +41,6 @@ $course = $result->fetch_assoc();
 <div class="container-fluid">
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
-        <div class="card p-3 col-md-8 offset-md-1">
       <div class="card p-3 col-md-6 offset-md-1 module-editor">
             <h3 class="mb-4">แก้ไขข้อมูลคอร์ส</h3>
             <form action="../auth/update_course.php" method="POST">
@@ -128,12 +127,8 @@ $course = $result->fetch_assoc();
 
                 <a href="../admin/view-courses.php" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> ย้อนกลับ</a> </button>
                 <button type="submit" class="btn btn-success"> <i class="bi bi-save"></i> บันทึกการแก้ไข</button>
-                <a href="../admin/view-courses.php" class="btn btn-secondary"> <i class="bi bi-arrow-left"></i> ย้อนกลับ</a>
-                 <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> บันทึกการแก้ไข</button>
-                </div>
             </form>
         </div>
-    </div>
 </div>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
