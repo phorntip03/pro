@@ -117,7 +117,6 @@ $personnel_result = mysqli_query($conn, $personnel_query);
 
                             <div class="text-center mt-4">
                                 <button class="btn btn-primary px-4 mx-2" type="submit">บันทึก</button>
-                                <a href="profile.php" class="btn btn-secondary px-4 mx-2">ยกเลิก</a>
                             </div>
                         </div>
                     </form>
