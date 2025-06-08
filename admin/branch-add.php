@@ -35,18 +35,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
 
-    <div class="container">
-        <h2>เพิ่มสาขา</h2>
-        <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
-        <form method="POST">
-            <div class="mb-3">
-                <label for="namebranch" class="form-label">ชื่อสาขา</label>
-                <input type="text" name="namebranch" id="namebranch" class="form-control" required>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">เพิ่มสาขา</h4>
+                        <a href="branch-manage.php" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> ย้อนกลับ
+                        </a>
+                    </div>
+
+                    <?php if (isset($error)): ?>
+                        <div class="alert alert-danger"><?= $error ?></div>
+                    <?php endif; ?>
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="namebranch" class="form-label">ชื่อสาขา</label>
+                            <input type="text" name="namebranch" id="namebranch" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> บันทึก
+                        </button>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-success">บันทึก</button>
-            <a href="branch-manage.php" class="btn btn-secondary">ย้อนกลับ</a>
-        </form>
+        </main>
     </div>
 </div>
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </body>
 </html>

@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// ดึงข้อมูลสาขาทั้งหมดจากฐานข้อมูล
 $sql = "SELECT * FROM branch ORDER BY branch_id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -53,7 +52,7 @@ $result = mysqli_query($conn, $sql);
                                     <a href="edit-branch.php?id=<?= $row['branch_id'] ?>" class="btn btn-primary btn-sm">
                                         <i class="bi bi-pencil-square"></i> แก้ไข
                                     </a>
-                                    <a href="delete-branch.php?id=<?= $row['branch_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบสาขานี้?');">
+                                    <a href="../auth/delete-branch.php?id=<?= $row['branch_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบสาขานี้?');">
                                         <i class="bi bi-trash"></i> ลบ
                                     </a>
                                 </td>

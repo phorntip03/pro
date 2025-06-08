@@ -35,25 +35,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>แก้ไขสาขา</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/backend-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    <?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
+<?php include(__DIR__ . '/../backend/views/backend/backend-header.php'); ?>
 
 <div class="container-fluid">
     <div class="row">
         <?php include(__DIR__ . '/../backend/views/backend/backend-sidebar.php'); ?>
-    <div class="container">
-        <h2>แก้ไขสาขา</h2>
-        <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
-        <form method="POST">
-            <div class="mb-3">
-                <label for="namebranch" class="form-label">ชื่อสาขา</label>
-                <input type="text" name="namebranch" id="namebranch" class="form-control" value="<?= htmlspecialchars($branch['namebranch']) ?>" required>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">แก้ไขสาขา</h4>
+                        <a href="branch-manage.php" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> ย้อนกลับ
+                        </a>
+                    </div>
+
+                    <?php if (isset($error)): ?>
+                        <div class="alert alert-danger"><?= $error ?></div>
+                    <?php endif; ?>
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="namebranch" class="form-label">ชื่อสาขา</label>
+                            <input type="text" name="namebranch" id="namebranch" class="form-control" value="<?= htmlspecialchars($branch['namebranch']) ?>" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> บันทึกการแก้ไข
+                        </button>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
-            <a href="branch-manage.php" class="btn btn-secondary">ย้อนกลับ</a>
-        </form>
+        </main>
     </div>
 </div>
+
 </body>
 </html>

@@ -21,6 +21,6 @@ if (mysqli_num_rows($check) > 0) {
 $sql = "DELETE FROM branch WHERE branch_id = $branch_id";
 mysqli_query($conn, $sql);
 
-header("Location: branch-manage.php");
+header("Location:../admin/branch-manage.php");
 exit();
 ?>
