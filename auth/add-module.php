@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (mysqli_stmt_execute($stmt)) {
             echo "<script>
                 alert('บันทึกข้อมูลสำเร็จ');
-                window.location.href='../admin/add-group.php'; 
+                window.location.href='../admin/add-module.php'; 
             </script>";
         } else {
             $error_message = mysqli_stmt_error($stmt);
